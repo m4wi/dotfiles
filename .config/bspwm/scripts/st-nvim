@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+st -c 'st-float' \
+   -t 'TextEditor' \
+   -g 70x45 \
+   -e 'nvim'

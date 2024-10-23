@@ -1,0 +1,4 @@
+#!/bin/bash
+
+maim ~/Pictures/ScreenShoot/$(date '+%Y-%m-%d_%H:%M:%S')_screenshoot.png
+dunstify -t 2500 -i ~/.config/dunst/icons/apps/ram.png "Captura de pantalla guardada"

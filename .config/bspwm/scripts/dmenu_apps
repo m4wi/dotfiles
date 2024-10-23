@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+route="/usr/share/applications"
+
+appx="$(ls $route | dmenu -l 10)"
+
+
+dex "$route/$appx"

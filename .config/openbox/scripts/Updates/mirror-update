@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [[ ! `pidof lxpolkit` ]]; then
+  dunstify -t 3000 -i ~/.config/dunst/icons/System/warning.png "STARTING POLKIT AGENT"
+  nohup lxpolkit -q >/dev/null 2>&1 &
+else
+  dunstify -t 3500 -i ~/.config/dunst/icons/System/warning.png "AGENT POLKIT IS ACTIVE"
+fi
+
+sleep 2;
+
+dunstify -t 7000 -i ~/.config/dunst/icons/System/upgrade.png "STARTING MIRROR UPGRADE"
+pkexec reflector --ipv4 --ipv6 --latest 30 -c cl,ar,us -p https --sort rate --save /etc/pacman.d/mirrorlist
+if [ $? -eq 0 ]; then
+    dunstify -t 3500 -i ~/.config/dunst/icons/System/update.png "UPDATED MIRRORS"
+else
+    dunstify -t 3500 -i ~/.config/dunst/icons/System/fail.png "UPDATED FAILED"
+fi

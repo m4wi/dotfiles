@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+st -c 'st-float' \
+   -t 'calculadora' \
+   -f 'Monaspace Neon:size=10' \
+   -g 75x50 \
+   -e 'python'
+

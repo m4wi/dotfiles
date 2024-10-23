@@ -1,0 +1,19 @@
+#!/bin/sh
+while read file
+do
+  case "$1" in
+  "w") 	
+    wz "$file"
+    sleep 1
+    wal -i "$file" -n -s
+    sleep 1
+    /home/mawi/.config/nsxiv/exec/setDefault.sh
+    cp ~/.cache/wal/colors.Xresources ~/.Xresources
+    xrdb ~/.Xresources
+    # /home/mawi/.config/nsxiv/exec/bspcolor_reload
+    notify-send "Enjoy your new colorscheme!" ;;
+  "s")
+     wz "$file"
+     notify-send "Wallpaper Seted!" ;;
+  esac
+done

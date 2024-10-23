@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+dunstify -t 1500 -i ~/Downloads/rem.png "(A) Battery" "Connect AC"
+light -S 8

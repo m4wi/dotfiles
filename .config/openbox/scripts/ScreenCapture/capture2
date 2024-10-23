@@ -1,0 +1,8 @@
+#!/bin/bash
+dunstify -t 2500 -i ~/.config/dunst/icons/apps/ram.png "SELECT AREA"
+maim -s -m 10 ~/Pictures/ScreenShoot/$(date '+%Y-%m-%d_%H:%M:%S')_screenshoot.png
+if [ $? -eq 0 ]; then
+    dunstify -t 2500 -i ~/.config/dunst/icons/apps/ram.png "Captura de pantalla guardada"
+else
+    dunstify -t 3500 -i ~/.config/dunst/icons/apps/ram.png "UPDATED FAILED"
+fi

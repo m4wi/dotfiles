@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+# list apps
+lista="ls /usr/share/applications"
+selected=`$lista | dmenu -fn 'JetbrainsMono NF:size=10' -l 10 -nb '#000000' -sf '#000000' "$@"`
+
+# test variable
+if [ -z "${selected}" ]; then
+  exit 1
+fi
+
+# run app
+nohup `grep '^Exec' "/usr/share/applications/$selected" | head -1 | sed 's/^Exec=//' | sed 's/%.//'` >/dev/null 2>&1&

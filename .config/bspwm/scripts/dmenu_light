@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+# Verificar si redshift está activo
+if pgrep -x "redshift" > /dev/null
+then
+    # Si redshift está activo, lo detenemos
+    redshift -x
+    echo "Redshift detenido"
+else
+    # Si redshift no está activo, lo iniciamos con un ajuste de brillo
+    redshift -O 4000
+    echo "Redshift iniciado con ajuste de brillo"
+fi

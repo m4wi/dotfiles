@@ -1,0 +1,28 @@
+#!/bin/bash
+
+namepattern=$1
+echo $namepattern
+
+contador=1
+
+DIRECTORIO="$PWD" # Reemplaza con la ruta al directorio que deseas recorrer
+# Recorre todos los archivos en el directorio
+for archivo in "$DIRECTORIO"/*; do
+    if [ -f "$archivo" ]; then
+	    extension="${archivo##*.}"
+	
+	    # Generar el nuevo nombre con ceros a la izquierda
+	    if [ $# -eq 0 ]; then
+	    	nuevo_nombre=$(printf "%04d.%s" "$contador" "$extension" )
+	    else
+	    	nuevo_nombre=$(printf "%04d%s.%s" "$contador" "-$namepattern" "$extension" )
+	    fi
+      echo $nuevo_nombre
+	    # Obtener el directorio del archivo
+	    directorio=$(dirname "$archivo")
+	
+	    # Renombrar el archivo con el nuevo nombre
+    	mv "$archivo" "${directorio}/${nuevo_nombre}"
+      contador=$((contador + 1))
+    fi
+done

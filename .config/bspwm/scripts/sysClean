@@ -1,0 +1,44 @@
+#!/usr/bin/env sh
+
+dunstify -t 1500 -i ~/Downloads/rem.png "(A) System Update" "Updating..."
+
+echo -e "\033[38;5;208m[T] Clean cache files. \033[0m"
+rm -rf ~/.cache
+
+echo -e "\033[38;5;208m[T] Clean Trash files. \033[0m"
+echo -e "\033[38;5;214m   [ST]Cleaning trash Info\033[0m"
+rm -rf ~/.local/share/Trash/info/*
+
+echo -e "\033[38;5;214m   [ST]Cleaning trash files\033[0m"
+rm -rf ~/.local/share/Trash/files/*
+
+echo -e "\033[38;5;208m[T] Optimize Firefox SQLite\033[0m"
+profile-cleaner f
+
+echo -e "\033[38;5;208m[T] Reset logs\033[0m"
+  echo -e "\033[38;5;214m   [ST] Reset xsession log\033[0m"
+  echo "" > ~/.xsession-errors
+  echo -e "\033[38;5;214m   [ST] Reset xsession.old log\033[0m"
+  echo "" > ~/.xsession-errors.old
+  echo -e "\033[38;5;214m   [ST] Reset .bash_history log\033[0m"
+  echo "" > ~/.bash_history
+
+echo -e "\033[38;5;208m[T] Clean journal logs\033[0m"
+sudo rm -rf /var/log/journal/*
+
+echo -e "\033[38;5;208m[T] Cleaning pacman cache\033[0m"
+paru -Scc --noconfirm
+
+echo -e "\033[38;5;208m[T] Update pacman mirror list\033[0m"
+sudo reflector \
+--save /etc/pacman.d/mirrorlist \
+--ipv4 \
+--ipv6 \
+--protocol https \
+--latest 20 \
+--sort rate
+
+echo -e "\033[38;5;208m[T] Update System\033[0m"
+paru -Syyu --verbose --noconfirm
+
+dunstify -t 3500 -i ~/Downloads/rem.png "(A) System Update" "Updated System"

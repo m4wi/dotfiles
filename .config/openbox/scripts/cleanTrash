@@ -1,0 +1,3 @@
+#!/bin/bash
+rm -r /home/kezo/.local/share/Trash/files/*
+rm -r /home/kezo/.local/share/Trash/info/*

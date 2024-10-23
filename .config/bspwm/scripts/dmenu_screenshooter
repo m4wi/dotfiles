@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+option_1="  Capture Desktop"
+option_2="󰋫  Capture Area"
+option_3="  Capture Window"
+option_4="󰄉  Capture in 5s"
+option_5="󱎫  Capture in 10s"
+
+
+chosen=$(echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5" | dmenu -fn 'JetbrainsMono NF:size=10' -l 10 -nb '#000000' -sf '#000000' -p "Choose: ")
+
+case ${chosen} in
+  $option_1)
+    screenshooter --now
+    ;;
+  $option_2)
+    screenshooter --area
+    ;;
+  $option_3)
+    screenshooter --win
+    ;;
+  $option_4)
+    screenshooter --in5
+    ;;
+  $option_5)
+    screenshooter --in10
+    ;;
+esac

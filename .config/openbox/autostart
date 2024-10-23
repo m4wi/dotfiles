@@ -1,0 +1,38 @@
+# Openbox config file
+# by: mawi
+
+# Openbox config path
+#OBXDIR="$HOME/.config/wm-scripts"
+
+# Add openbox scripts to PATH
+#export PATH="${PATH}:$OBXDIR"
+
+
+# Set Wallpaper
+~/.wz
+
+# Launch system panel
+tint2 &
+
+# Set color Saturation
+vibrant-cli eDP-1 2.125
+
+# X Compositor
+picom -b --config ~/.config/picom/open-picom.conf
+
+# Disable touchpad
+xinput disable 10
+
+# Set default Light
+light -S 10
+
+# Set defau
+pactl set-sink-volume @DEFAULT_SINK@ 40%
+
+# Special Key
+numlockx &
+
+dunstify -t 4500 -i ~/.config/dunst/icons/apps/makize.png "(A) System " "Welcome back!"
+
+# Autostart Programs
+firefox-developer-edition &

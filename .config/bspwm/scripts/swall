@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+
+if [ $# -eq 0 ]; then
+  echo "Debe proporcionar el nombre del archivo como argumento"
+  exit 1
+fi
+
+if [ ! -f "$1" ]; then
+  echo "El archivo no existe"
+  exit 1
+fi
+
+# obtenemos la ruta del archivo
+route="$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
+
+# set wallpaper
+xwallpaper --output eDP-1 --zoom "$route"
+
+# Save operation
+echo "#!/bin/bash
+xwallpaper --output eDP-1 --zoom '$route' " > ~/.xbg

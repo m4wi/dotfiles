@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+# array definition
+options=("  Shutdown" "⭘  Reboot" "󰤄  Suspend" "  Lock" "󰗼  Exit")
+
+# display menu
+selected_option=$(printf "%s\n" "${options[@]}" | dmenu -fn 'JetbrainsMono NF:size=10' -nb '#000000' -sf '#000000' -l ${#options[@]} -p "System:")
+
+
+
+if [ ! -n "$selected_option" ]; then
+	exit 1
+fi
+
+confirm_option=$(printf "Yes\nNo\n" | dmenu -fn 'JetbrainsMono NF:size=10' -nb '#000000' -sf '#000000' -l 2 -p "Confirm: ")
+
+if [ ! "$confirm_option" = "Yes" ]; then
+	exit 1
+fi
+
+case "$selected_option" in
+	"  Shutdown") systemctl poweroff ;;
+	"⭘  Reboot")   systemctl reboot ;;
+	"󰤄  Suspend")  systemctl suspend ;;
+	"  Lock")     dunstify "Hola" ;;  # Ajusta esto según tu comando para bloquear la pantalla
+	"󰗼  Exit")     kill -9 -1 ;;
+	*)             exit 1 ;;
+esac
